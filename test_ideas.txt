@@ -1,0 +1,9 @@
+
+- test dictinaries keys
+- test exact return statement from input data
+
+- user is not using the right classes?"li with class event, are you sure of the "
+- handle element not found
+- variable names are right
+
+- import errors for baeutoful soup check https://www.crummy.com/software/BeautifulSoup/bs4/doc/#problems-after-installation

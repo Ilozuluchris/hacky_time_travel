@@ -1,0 +1,6 @@
+Why pipenv.
+- Simpler commands to activate virtual environment, you dont need to remember the name of
+- Better dependency management
+
+why Requests
+- More human than urllib
