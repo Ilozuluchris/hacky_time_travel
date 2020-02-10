@@ -1,9 +1,11 @@
 import requests
+from requests.exceptions import RequestException
+
 
 def getData():
     website_url = "https://www.onthisday.com/"
-    res = requests.get(website_url)
-    if res.status_code == 200:
-        return {'status': True, "data": res.text}
-    else:
+    try:
+        res = requests.get(website_url)
+    except RequestException:
         return {'status': False}
+    return {'status': True, "content": res.text}
