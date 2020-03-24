@@ -6,7 +6,7 @@ today(by scraping a site ) and go through in a reverse chornologically order giv
 us a "time travel" experience
 
 # Perquisites
-- Basic Html knowdlege
+- Basic Html knowledge
 - Python 3 installed, project was built with python 3.6
 - A code editor
 ## Setup
@@ -18,3 +18,6 @@ us a "time travel" experience
 
 ## Viewing your work
 - Use flask run to view your work
+
+# some tips
+- Pay attention to function names listed in steps

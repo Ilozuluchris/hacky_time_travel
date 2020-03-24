@@ -62,7 +62,5 @@ def test_getData(mocked_get):
         assert content is not None, "Check that url passed to requests.get is https://www.onthisday.com/ tip double check the url scheme and ensure it ends in /"
         assert isinstance(content, str), "Your content key should map to a str not a {}, tip ensure it maps to res.txt".format(type(content))
 
-    assert data['status'], "Ensure the url passed to requests.get is https://www.onthisday.com/, double check the scheme(the https part)"
     assert "html" in data['content'], "Your content key is not mapped to a valid html, check that it is mapped to res.text ie: 'content': res.text"
-
-
+    assert data['status'], "Ensure the url passed to requests.get is https://www.onthisday.com/, double check the scheme(the https part)"
