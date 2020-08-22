@@ -1,5 +1,5 @@
 
-- test dictinaries keys
+- test dictinaries keys(the existence of a key, and the type of the value of said key)
 - test exact return statement from input data
 
 - user is not using the right classes?"li with class event, are you sure of the "

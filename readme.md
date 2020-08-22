@@ -6,7 +6,7 @@ today(by scraping a site ) and go through in a reverse chornologically order giv
 us a "time travel" experience
 
 # Perquisites
-- Basic Html knowledge
+- Basic Html and css (to be particular css selector) knowledge
 - Python 3 installed, project was built with python 3.6
 - A code editor
 ## Setup
@@ -21,3 +21,4 @@ us a "time travel" experience
 
 # some tips
 - Pay attention to function names listed in steps
+- Pay attention  strings(and the lack of strings) that appear inside back ticks(``)

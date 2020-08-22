@@ -3,4 +3,9 @@ Why pipenv.
 - Better dependency management
 
 why Requests
-- More human than urllib
+- More human readable than urllib
+
+
+## Ways to improve code
+- If you included an else statement in the getEvents function in task 3
+You can actually remove this. Tip: Python functions return None by default

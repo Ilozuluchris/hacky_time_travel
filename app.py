@@ -10,3 +10,11 @@ def getData():
     except RequestException:
         return {'status': False}
     return {'status': True, "content": res.text}
+
+
+def getEvents(data):
+    X = 6
+
+
+if __name__=="__main__":
+    print(getData())
