@@ -32,7 +32,7 @@ In order to scrape for data we need to first download the html page of the site,
    We can get the list of events by parsing through the html contents we got from the previous task, to do we would be using the wonderful BeautifulSoup library.
 - First import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
 - Create a function called `get_events`, this function would be receiving only one argument, which we would call  `data`, which is the dictionary gotten from the get_data function.
-- Check status key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
+- Check `status` key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
    - Tip `True` is a `boolean` not a  `string`
 - If the check fails, we do nothing and just return `None`.
     - Tip `None` is data type of its own.

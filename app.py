@@ -12,8 +12,14 @@ def get_data():
     return {'status': True, "content": res.text}
 
 
-def get_events(data):
-    X = 6
+def get_events(site_data):
+    if site_data['status']:
+        site_html = site_data['content']
+
+        soup = BeautifulSoup(site_html, features="html.parser")
+        events_list = soup.select(".event-list--with-advert>.event")
+        return events_list
+    return None
 
 
 if __name__=="__main__":
