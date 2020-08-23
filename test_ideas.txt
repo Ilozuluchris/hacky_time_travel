@@ -2,10 +2,11 @@
 - test dictinaries keys(the existence of a key, and the type of the value of said key)
 - test exact return statement from input data
 
+# use this for the integration test
 - user is not using the right classes?"li with class event, are you sure of the "
 - handle element not found
 - variable names are right
 
-- import errors for baeutoful soup check https://www.crummy.com/software/BeautifulSoup/bs4/doc/#problems-after-installation
+- import errors for baeutiful soup check https://www.crummy.com/software/BeautifulSoup/bs4/doc/#problems-after-installation
 
 - test setups file, ensuring package were installed

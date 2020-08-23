@@ -36,7 +36,8 @@ In order to scrape for data we need to first download the html page of the site,
    - Tip `True` is a `boolean` not a  `string`
 - If the check fails, we do nothing and just return `None`.
     - Tip `None` is data type of its own.
-- If the check passes, pass `data["content"]` into a new instance  of the `BeautifulSoup` class and save it to a variable eg `soup = BeautifulSoup(data["result"])`
+- If the check passes, pass `data["content"]` into a new instance  of the `BeautifulSoup` class and save it to a variable eg `soup = BeautifulSoup(data["result"], "html.parser")`
+    - Tip: The second argument to the BeautifulSoup constructor indicates a html parser to use, this ensures all machines parse the html the same way. This is very important when you plan to share your code with others.
 - Next we get the HTML elements that contain the actual events. To do we use the css selector of those elements which is  ".event-list--with-advert>.event", then we pass this
 css selector into the "select" method  of `soup`(the variable created in the previous soup) and save it to a variable ie: `events_list = soup.select(".event-list--with-advert>.event")`.
 
@@ -52,7 +53,7 @@ While we have successfully scraped for the  events, we need to format in to some
 - If the check passes, we would iterate through the `events` argument using a for loop 
     - Note: We are not going to specify what would happen if check fails, because we would be returning the `formatted_events` regardless
 - Inside this for loop, we would do a couple of things
-    - Get the year and details of each event by doing  `event_year, event_details = event.text.split(" ", 1)`.
+    - Get the year and details of each event by doing  `event_year, event_details = event.text.split(" ", 1)`. `event.text` contain the actual text(inside the HTML tags) from the events html
     This bit of code splits each events by the first occurrence of an empty space which is an empty string (`" "`).
     This returns a tuple which contains two elements. The first  element is the year of the event and the second
     element contains details of the event.

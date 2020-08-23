@@ -23,7 +23,7 @@ def bad_data_from_site():
 
 def test_beautifulsoup_import():
     assert "BeautifulSoup" in dir(app), \
-        "You have not imported beautifulsoup, please import with 'from bs4 import BeautifulSoup'"
+        "You have not imported BeautifulSoup, please import with 'from bs4 import BeautifulSoup'"
 
 
 def test_get_events_exists():
