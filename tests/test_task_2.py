@@ -36,19 +36,19 @@ def test_requests_exception_import():
     assert "RequestException" in dir(app), "You need to import 'RequestException' use 'from requests.exceptions import RequestException' without the quotes to import it"
 
 
-def test_getData_exists():
-    assert "getData" in dir(app), "You need to define the getData function in app.py"
+def test_get_data_exists():
+    assert "get_data" in dir(app), "You need to define the get_data function in app.py"
 
 
 #todo test  for the exception
 @mock.patch('app.requests.get', side_effect=mocked_side_effect)
-def test_getData(mocked_get):
+def test_get_data(mocked_get):
 
-    assert "getData" in dir(app), "You need to define the getData function in app.py"
+    assert "get_data" in dir(app), "You need to define the get_data function in app.py"
 
-    returned_data = app.getData()
+    returned_data = app.get_data()
 
-    assert isinstance(returned_data, dict), "Your getData function does not return a dictionary, instead it returns a {}".format(type(returned_data))
+    assert isinstance(returned_data, dict), "Your get_data function does not return a dictionary, instead it returns a {}".format(type(returned_data))
 
     try:
         status = returned_data['status']
@@ -69,5 +69,5 @@ def test_getData(mocked_get):
     # todo might remove this
     assert "html" in returned_data['content'], "Your content key is not mapped to a valid html, check that it is mapped to res.text ie: 'content': res.text"
     # todo why this
-    # todo supress warnings on pytest and show only assert messages
+    # todo suppress warnings on pytest and show only assert messages
     # assert returned_data['status'], "Ensure the url passed to requests.get is https://www.onthisday.com/, double check the scheme(the https part)"

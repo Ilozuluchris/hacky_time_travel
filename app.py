@@ -3,7 +3,7 @@ import requests
 from requests.exceptions import RequestException
 
 
-def getData():
+def get_data():
     website_url = "https://www.onthisday.com/"
     try:
         res = requests.get(website_url)
@@ -12,9 +12,9 @@ def getData():
     return {'status': True, "content": res.text}
 
 
-def getEvents(data):
+def get_events(data):
     X = 6
 
 
 if __name__=="__main__":
-    print(getData())
+    print(get_data())

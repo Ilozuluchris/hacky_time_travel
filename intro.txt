@@ -7,5 +7,5 @@ why Requests
 
 
 ## Ways to improve code
-- If you included an else statement in the getEvents function in task 3
+- If you included an else statement in the get_events function in task 3
 You can actually remove this. Tip: Python functions return None by default

@@ -15,7 +15,7 @@ After setting up, you can dive in
 We would be using `https://www.onthisday.com/` to get the events to use in our hacky-time travelling machine
 In order to scrape for data we need to first download the html page of the site, we use the requests library for this
 - Import requests into app.py using `import requests` and of course RequestException `from requests.exceptions import RequestException` which would be used to handle errors
-- Define a function called `getData`.
+- Define a function called `get_data`.
     i.   Create a variable to hold the site url `site_url="https://www.onthisday.com/"`
     ii.  Get the page data using requests and save it to a variable `res = requests.get(website_url)`
     iii. Catch the `RequestException`  using a try-catch statement.
@@ -30,8 +30,8 @@ In order to scrape for data we need to first download the html page of the site,
 
 # 3 Getting a list of events(Parsing site data)
    We can get the list of events by parsing through the html contents we got from the previous task, to do we would be using the wonderful BeautifulSoup library.
-- First import the BeautifulSoup class from the bs4, which is the version 4 of the BeautifulSoup library, into app.py using `from bs4 import BeautifulSoup`
-- Create a function called getEvents, this function would be receiving only one argument, which we would call  `data`, which is the dictionary gotten from the getData function.
+- First import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
+- Create a function called `get_events`, this function would be receiving only one argument, which we would call  `data`, which is the dictionary gotten from the get_data function.
 - Check status key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
    - Tip `True` is a `boolean` not a  `string`
 - If the check fails, we do nothing and just return `None`.
@@ -46,7 +46,7 @@ css selector into the "select" method  of `soup`(the variable created in the pre
 # 4 Reformatting event list data
 While we have successfully scraped for the  events, we need to format in to something more presentable.
 
-- First create, a function called formatEvents. The formatEvents function would take only one argument which we call `events` moving forward
+- First create, a function called format_events. The format_events function would take only one argument which we call `events` moving forward
 - Create a new variable that is actually an empty list. This list would  hold the formatted events we would use `formatted_events`
 - Check that `events` argument is not `None`
 - If the check passes, we would iterate through the `events` argument using a for loop 
@@ -64,7 +64,7 @@ While we have successfully scraped for the  events, we need to format in to some
       eg: `event_dict = {year: event_year, details:event_details}`
       - Tip dont change the keys. Use 'year' and 'details' 
     - Append the dictionary(`event_dict`) to the list(`formatted_events`) created in step 2.
-- Return the list (`formatted_events`) as the only result of the  `formatEvents` function.
+- Return the list (`formatted_events`) as the only result of the  `format_events` function.
     - NOte: You need to un-indent  to the first indent of the function ie  `forrmatted_events` and the 
     return are aligned vertically 
 
