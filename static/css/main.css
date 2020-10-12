@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
+
+/*
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/***
+	Slider
+ */
+
+.owl-next{
+    padding-left: 1%;
+
+}
+
+/** spinner **/
+
+.mesh-loader {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.mesh-loader .circle {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background: #03A9F4;
+    border-radius: 50%;
+    margin: -12.5px;
+    -webkit-animation: mesh 3s ease-in-out infinite;
+    animation: mesh 3s ease-in-out infinite -1.5s;
+}
+
+.mesh-loader > div .circle:last-child {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+
+.mesh-loader > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.mesh-loader > div:last-child {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+@-webkit-keyframes mesh {
+  0% {
+    -webkit-transform-origin: 50% -100%;
+            transform-origin: 50% -100%;
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform-origin: 50% -100%;
+            transform-origin: 50% -100%;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+  50.00001% {
+    -webkit-transform-origin: 50% 200%;
+            transform-origin: 50% 200%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform-origin: 50% 200%;
+            transform-origin: 50% 200%;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes mesh {
+  0% {
+    -webkit-transform-origin: 50% -100%;
+            transform-origin: 50% -100%;
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform-origin: 50% -100%;
+            transform-origin: 50% -100%;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+  50.00001% {
+    -webkit-transform-origin: 50% 200%;
+            transform-origin: 50% 200%;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform-origin: 50% 200%;
+            transform-origin: 50% 200%;
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+
+/* Reset */
+
+	html, body, div,  footer, header {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+
+	section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+		-webkit-text-size-adjust: none;
+	}
+
+/* Basic */
+
+	html, body {
+		background: #1c1d26;
+	}
+
+
+
+	body, input, select, textarea {
+		color: rgba(255, 255, 255, 0.75);
+		font-family: "Roboto", Helvetica, sans-serif;
+		font-size: 15pt;
+		font-weight: 100;
+		line-height: 1.75em;
+	}
+
+
+	p {
+		margin: 0 0 2em 0;
+	}

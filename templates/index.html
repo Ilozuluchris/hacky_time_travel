@@ -1,41 +1,68 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-    <title>Hello from Flask</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <title>HackyTime Travel</title>
 </head>
 
-<body>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(45).jpg"
-        alt="First slide">
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+<body class="landing">
+    <div id="main" class="container">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script>
-    $(function() {
-          $('#carouselExampleControls').carousel({
-            // Options
-        });
-    });
-</script>
+        <div class="d-flex justify-content-center">
+
+
+            <div class="events owl-carousel" style="padding-top: 20%">
+
+            {% for event in events %}
+                <div class="card" style="background-color: #181922; border-radius: 5%!important;">
+
+                        <h4 class="card-header" style="background-color: #e44c65; border-radius: 5%!important;"></h4>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        {{event.year}}
+                                    </div>
+                                    <div class="card-text">
+                                        <p>{{event.details}}</p>
+
+                                </div>
+                        </div>
+                </div>
+
+                {% else %}
+                <p> Sorry, no notable  events today!</p>
+            {% endfor %}
+                            </div>
+
+            <br/>
+
+    </div>
+    </div>
+
+    <audio id="time_jump_sound" src="{{ url_for('static', filename='time_travel.mp3') }}"></audio>
+
+    <!-- overlay -->
+    <div class="mesh-loader" style="display: none">
+        <div class="set-one">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="set-two">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
