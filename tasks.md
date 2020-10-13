@@ -39,30 +39,27 @@ css selector into the "select" method  of `soup`(the variable created in the pre
 
 - Return the variable  gotten from the last step.
 
-
-# 4 Reformatting event list data
-While we have successfully scraped for the  events, we need to format in to something more presentable.
-
-- First create, a function called format_events. The format_events function would take only one argument which we call `events` moving forward
-- Create a new variable that is actually an empty list. This list would  hold the formatted events we would use `formatted_events`
-- Check that `events` argument is not `None`
+# 4 Reformatting the list of events
+While we have successfully scraped for a list of  events, hurray!, we need to format it to something more presentable.
+- First we create, a function called `format_events`. The format_events function would take only one argument which we would call `events` moving forward
+- Create a new variable that is actually an empty list. This list would  hold the formatted events we would call `formatted_events` moving forward
+- Check that `events` (the argument to format_events) argument is not `None`
 - If the check passes, we would iterate through the `events` argument using a for loop 
-    - Note: We are not going to specify what would happen if check fails, because we would be returning the `formatted_events` regardless
+    - Note: We are not going to specify what would happen if check fails, because we would be returning the `formatted_events` irregardless
 - Inside this for loop, we would do a couple of things
-    - Get the year and details of each event by doing  `event_year, event_details = event.text.split(" ", 1)`. `event.text` contain the actual text(inside the HTML tags) from the events html
-    This bit of code splits each events by the first occurrence of an empty space which is an empty string (`" "`).
-    This returns a tuple which contains two elements. The first  element is the year of the event and the second
+    i. Get the year and details of each event using `event_year, event_details = event.text.split(" ", 1)`. `event.text` contain the actual text(inside the HTML tags) from the events html
+    This line of code splits each event into its year of occurrence and details using  the first occurrence of an empty space (which is an empty string  in python).
+    This returns a tuple which contains two elements. The first  element is the year the event occured and the second
     element contains details of the event.
     
-    - Create a dictionary with two keys
-        - The year key is mapped to the `event_year` variable from the previous step
-        - The details key is mapped to  the `event_details` variable from the previous step
-        
-      eg: `event_dict = {year: event_year, details:event_details}`
-      - Tip dont change the keys. Use 'year' and 'details' 
-    - Append the dictionary(`event_dict`) to the list(`formatted_events`) created in step 2.
-- Return the list (`formatted_events`) as the only result of the  `format_events` function.
-    - NOte: You need to un-indent  to the first indent of the function ie  `forrmatted_events` and the 
-    return are aligned vertically 
+    ii. Create a dictionary with two keys
+        - The `year` key is mapped to the `event_year` variable from the previous step
+        - The `details` key is mapped to  the `event_details` variable from the previous step    
+        The resulting dictionary would look like so `event_dict = {year: event_year, details:event_details}`
+            - Tip: Don't change the keys. Use `year` and `details` this is very important for the next task 
+    iii. Append the dictionary(`event_dict`) from ii to the list(`formatted_events`) created previously.
+- Return the list (`formatted_events`) as the only returned value of the `format_events` function.
+    - Tip: You need to un-indent to the first indent level of the function ie  `formatted_events` 
+    before returning the result, this ensures  all the events are in the list not just one
 
 # 5 Add visuals, so we can show our time machine
