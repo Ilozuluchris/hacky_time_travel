@@ -1,5 +1,5 @@
 """"
-tests cases for the task 3
+Tests cases for the task 3
 """
 import bs4
 import pytest
@@ -7,7 +7,6 @@ import pytest
 import app
 
 
-# todo make name better
 @pytest.fixture
 def good_data_from_site():
     return {'status': True, 'content':
@@ -23,7 +22,7 @@ def bad_data_from_site():
 
 def test_beautifulsoup_import():
     assert "BeautifulSoup" in dir(app), \
-        "You have not imported BeautifulSoup, please import with 'from bs4 import BeautifulSoup'"
+        "BeautifulSoup has not been imported in app.py, please import with 'from bs4 import BeautifulSoup'"
 
 
 def test_get_events_exists():
@@ -31,18 +30,22 @@ def test_get_events_exists():
 
 
 # todo test for bad data request, poor html how
-def test_get_events(good_data_from_site):
-    assert "get_events" in dir(app), "Create the get_events function"
+def test_get_events_using_good_data(good_data_from_site):
+    assert "get_events" in dir(app), "The get_events function has not been created in app.py, please create it and " \
+                                     "check the function name is correct"
 
     result = app.get_events(good_data_from_site)
     assert result is not None, "The get_events function is returning None" \
-                               " even when the status key of its argument is True (arg['status']=True)"
-    assert isinstance(result, bs4.element.ResultSet), "Your get_events function is not returning the result of" \
-                                                      " selecting the event elements. Reread  step 5-7  of task 3"
+                               " even when though status key of its argument is True. " \
+                               "Ensure you are only returning None when the status key of the argument is False"
+    assert isinstance(result, bs4.element.ResultSet), "Your get_events function is not returning the result of " \
+                                                      "selecting the event elements. Please reread step 5 through 7 " \
+                                                      "of task 3"
 
 
 def test_get_events_using_bad_data(bad_data_from_site):
-    assert "get_events" in dir(app), "Create the get_events function"
+    assert "get_events" in dir(app), "The get_events function has not been created in app.py, please create it and " \
+                                     "check the function name is correct"
 
     result = app.get_events(bad_data_from_site)
     assert result is None, "The get_events function is not returning None " \

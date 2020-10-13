@@ -24,17 +24,18 @@ In order to scrape for data we first need to download the html page of the site,
             - Tip: Remember to change `res` to whatever variable you used to store the html data gotten in ii
 
 # 3 Getting a list of events (Parsing site data)
-  We can get the list of events by parsing through the html contents we got from the previous task, to do we would be using the wonderful BeautifulSoup library.
-- First import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
-- Create a function called `get_events`, this function would be receiving only one argument, which we would call  `data`, which is the dictionary gotten from the get_data function.
-- Check `status` key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
+  Since we have gotten data from the site we now need to get a list of events by parsing through the data from the previous task, to do that we would be using the wonderful BeautifulSoup library.
+  The BeautifulSoup library allow us makes sense of the html data via code.
+- First we import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
+- Next, we create a function called `get_events`, this function would be receiving only one argument called `data`, which is the dictionary returned by the get_data function in the previous task.
+- Check the `status` key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
    - Tip `True` is a `boolean` not a  `string`
-- If the check fails, we do nothing and just return `None`.
-    - Tip `None` is data type of its own.
+- If the check fails, we do nothing and just return `None` since this form is not useful to us.
+    - Tip `None` is a  data type of its own in python.
 - If the check passes, pass `data["content"]` into a new instance  of the `BeautifulSoup` class and save it to a variable eg `soup = BeautifulSoup(data["result"], "html.parser")`
-    - Tip: The second argument to the BeautifulSoup constructor indicates a html parser to use, this ensures all machines parse the html the same way. This is very important when you plan to share your code with others.
-- Next we get the HTML elements that contain the actual events. To do we use the css selector of those elements which is  ".event-list--with-advert>.event", then we pass this
-css selector into the "select" method  of `soup`(the variable created in the previous soup) and save it to a variable ie: `events_list = soup.select(".event-list--with-advert>.event")`.
+    - Tip: The second argument to the BeautifulSoup constructor tells it what html parser to use, this ensures all machines parse the html the same way. This is very important when you plan to share your code with others or deploy on a different side.
+- Next we get the HTML elements that contain the actual events. To do this, we use the css selector of those elements which is  ".event-list--with-advert>.event" which I got via inspecting the page using my browser's dev tools, then we pass this
+css selector into the "select" method  of `soup`(the variable created in the previous step) and save it to a variable ie: `events_list = soup.select(".event-list--with-advert>.event")`.
 
 - Return the variable  gotten from the last step.
 

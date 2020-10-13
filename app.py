@@ -19,7 +19,7 @@ def get_events(site_data):
     if site_data['status']:
         site_html = site_data['content']
 
-        soup = BeautifulSoup(site_html, "html.parser")# todo  why html parser
+        soup = BeautifulSoup(site_html, "html.parser")
         events_list = soup.select(".event-list--with-advert>.event")
         return events_list
     return None
