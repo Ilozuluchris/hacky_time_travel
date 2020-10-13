@@ -1,35 +1,30 @@
-After setting up, you can dive in
+Welcome to HACKYTIME TRAVEL, a project to help you learn  web scraping by navigating through past events.
+Please follow all the instructions and keep an eye out for 
 
 # 1 Setup
-## Setup
-- Create a virtual environment, personally I use pipenv, but use the method you are most comfortable with.
+- It is advised, you start by creating a virtual environment, personally I use pipenv, but use the method you are most comfortable with.
     - Using pipenv: Install pipenv if you have not via `pip install pipenv`and create the environment via `pipenv shell --python 3`;
 -   Install requirements
-    - Using pipenv: `pipenv install -r requirements.txt
--  Verify setup run `ptw` or `pytest-watch`, all the tests should fail, which is a good thing. As you go through this project all the tests would pass!
-
-## Viewing your work, move to intro
-- Use flask run to view your work; todo might need to specify export, pass debug explicilty to the flask app
+    - Using pipenv: `pipenv install -r requirements.txt`
+- To verify setup run `ptw` or `pytest-watch`, all the tests should be failing, which is what we want. As you go through this project all the tests would pass!
 
 # 2 Getting site data
-We would be using `https://www.onthisday.com/` to get the events to use in our hacky-time travelling machine
-In order to scrape for data we need to first download the html page of the site, we use the requests library for this
-- Import requests into app.py using `import requests` and of course RequestException `from requests.exceptions import RequestException` which would be used to handle errors
+We would be using `https://www.onthisday.com/` to get the events to use
+In order to scrape for data we first need to download the html page of the site, we would use the requests library for this
+- Import the `requests` library into app.py using `import requests`
+- Then import RequestException via `from requests.exceptions import RequestException` which would be enable us handle errors that the requests library might throw.
 - Define a function called `get_data`.
-    i.   Create a variable to hold the site url `site_url="https://www.onthisday.com/"`
-    ii.  Get the page data using requests and save it to a variable `res = requests.get(website_url)`
-    iii. Catch the `RequestException`  using a try-catch statement.
-    iv.  If the exception is thrown return a dictionary with only key 'status' that maps to `False` ie `{"status":False}`
-            - Note: `False` is a `boolean` not a `string`
-
-    v.   If the exception does not occur, return a dictionary like so:
-    `{"status": True, "content": res.text}`
+    i.   Create a variable to hold the site url `site_url="https://www.onthisday.com/"`, this site has a list of events that happened on a particular day, in this case today.
+    ii.  Get the html data by passing the site_url to `requests.get()` and assigning the result to a variable ie `res = requests.get(site_url)`
+    iii. Catch the `RequestException`, this exception can thrown from ii above  using a try-catch statement.
+    iv.  If `RequestException` is thrown return a dictionary with only key 'status' that maps to `False` ie `{"status":False}`
+            - Note: `False` is `boolean` not a `string`
+    v.   If `RequestException` does not occur, return a dictionary like so: `{"status": True, "content": res.text}`
             - Note: `True` is a `boolean` not a `string`
-            -Tip: Remember to change `res` to whatever variable you usedd  
+            - Tip: Remember to change `res` to whatever variable you used to store the html data gotten in ii
 
-
-# 3 Getting a list of events(Parsing site data)
-   We can get the list of events by parsing through the html contents we got from the previous task, to do we would be using the wonderful BeautifulSoup library.
+# 3 Getting a list of events (Parsing site data)
+  We can get the list of events by parsing through the html contents we got from the previous task, to do we would be using the wonderful BeautifulSoup library.
 - First import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
 - Create a function called `get_events`, this function would be receiving only one argument, which we would call  `data`, which is the dictionary gotten from the get_data function.
 - Check `status` key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.

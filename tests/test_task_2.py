@@ -1,5 +1,5 @@
 """
-Test cases for task 1.
+Test cases for task 2.
 """
 from unittest import mock
 
@@ -22,34 +22,25 @@ def good_side_effect(*args, **kwargs):
             return self.data
 
     url = args[0]
+    if url != "https://www.onthisday.com/":
+        pytest.fail('Wrong url was passed to requests.get() in app.py, correct url is https://www.onthisday.com/')
 
-    if url == "https://www.onthisday.com/":
-        return MockedResponse(testSiteContent)
-    else:
-        return MockedResponse(None)
+    return MockedResponse(testSiteContent)
 
 
 def exception_thrown_side_effect(*args, **kwargs):
-    class MockedResponse:
-        def __init__(self, data):
-            self.data = data
-
-    url = args[0]
-
-    print(url)
-    if url == "https://www.onthisday.com/":
-        raise RequestException
-    #
-    else:
-        return MockedResponse(None)
+    raise RequestException
 
 
 def test_requests_import():
-    assert "requests" in dir(app), "You are yet to import the requests module, use 'import requests' without the quotes  to import it"
+    assert "requests" in dir(
+        app), "The requests module has not been imported, use 'import requests' without the quotes  to import it"
 
 
 def test_requests_exception_import():
-    assert "RequestException" in dir(app), "You need to import 'RequestException' use 'from requests.exceptions import RequestException' without the quotes to import it"
+    assert "RequestException" in dir(
+        app), "RequestException should be imported via 'from requests.exceptions import RequestException' " \
+              "without the quotes"
 
 
 def test_get_data_exists():
@@ -59,64 +50,64 @@ def test_get_data_exists():
 @mock.patch('app.requests.get', side_effect=good_side_effect)
 def test_get_data_good_request(mocked_requests_get):
     """
-    Test that the good data works right when  requests.get doesnt throw an error
-    :param mocked_get:
-    :return:
+    Test that get_data() works right when  requests.get()
+    doesn't throw an error and the right url is passed to requests.get().
     """
-    assert "get_data" in dir(app), "You need to define the get_data function in app.py"
+    assert "get_data" in dir(app), "The get_data function has not been defined in app.py"
 
     returned_data = app.get_data()
-
-    assert isinstance(returned_data, dict), "Your get_data function does not return a dictionary, instead it returns a {}".format(type(returned_data))
+    assert isinstance(returned_data,
+                      dict), "The get_data function does not return a dictionary, instead it returns a {}".format(
+        type(returned_data))
 
     try:
         status = returned_data['status']
     except KeyError:
-        pytest.fail("Your returned dictionary does not have a status key")
+        pytest.fail("The returned dictionary from get_data does not have a status key")
     else:
-        assert isinstance(status, bool), "Your status key doesnot map to a boolean (True or False), remember if the RequestException occurs, the status key maps to False and  if doesnot occur it maps to True"
+        assert isinstance(status, bool), "The status key from get_data's returned value does not map " \
+                                         "to a boolean (True or False)"
+        assert status is True, "The status key in get_data's returned dictionary does not map to True(a boolean)," \
+                               "remember if the RequestException is thrown, the status key should map to True"
 
     try:
         content = returned_data['content']
     except KeyError:
-        pytest.fail("Your returned dictionary does not have a content key")
+        pytest.fail("get_data's returned dictionary does not have a content key")
     else:
-        assert content is not None, "Check that url passed to requests.get is https://www.onthisday.com/" \
-                                    " tip double check the url scheme and ensure it ends in //"
-        assert isinstance(content, str), f"Your content key should map to a str not a {type(content)}, tip ensure it maps to res.txt"
-
-    # todo might remove this
-    assert "html" in returned_data['content'], "Your content key is not mapped to a valid html, check that it is mapped to res.text ie: 'content': res.text"
-    # todo why this
-    # todo suppress warnings on pytest and show only assert messages
-    # assert returned_data['status'], "Ensure the url passed to requests.get is https://www.onthisday.com/, double check the scheme(the https part)"
+        assert isinstance(content,
+                          str), "The content key from get_data's returned dictionary should map to a str not a {}, " \
+                                "tip ensure it maps to res.txt".format(type(content))
+        assert "html" in content, "The content key from get_data's returned dictionary is not mapped to a valid html," \
+                                  "check that it is mapped to res.text ie: 'content': res.text"
 
 
 @mock.patch('app.requests.get', side_effect=exception_thrown_side_effect)
 def test_get_data_bad_request(mocked_requests_get):
     """
-    Test that the bad data works right when  requests.get doesnt throw an error
-    :return:
+    Test that get_data fails when requests.get throws an error
     """
-    assert "get_data" in dir(app), "You need to define the get_data function in app.py"
+    assert "get_data" in dir(app), "The get_data function has not been defined in app.py"
 
     returned_data = app.get_data()
-
-    assert isinstance(returned_data, dict), "Your get_data function does not return a dictionary, instead it returns a {}".format(type(returned_data))
+    assert isinstance(returned_data,
+                      dict), "The get_data function does not return a dictionary, instead it returns a {}".format(
+        type(returned_data))
 
     try:
         status = returned_data['status']
     except KeyError:
-        pytest.fail("Your returned dictionary does not have a status key")
+        pytest.fail("get_data's returned dictionary does not have a content key")
     else:
-        assert isinstance(status, bool), "Your status key doesnot map to a boolean (True or False), " \
-                                         "remember if the RequestException occurs, the status key maps to False and " \
-                                         " if does not occur it maps to True"
-        assert status is False, "Your status key should be mapped to False if the Exception is caught"
+        assert isinstance(status, bool), "The status key from get_data's returned value does not map " \
+                                         "to a boolean (True or False)"
+        assert status is False, "The status key from get_data's returned dictionary should be " \
+                                "mapped to False if RequestException is caught"
 
     try:
         returned_data['content']
     except KeyError:
         pass
     else:
-        pytest.fail("Your returned dictionary should not have a content key, since the 'RequestsException' was thrown.")
+        pytest.fail("get_data's returned dictionary should not have a content key, "
+                    "since `RequestsException` was thrown.")
