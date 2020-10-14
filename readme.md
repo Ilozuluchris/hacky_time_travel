@@ -6,7 +6,7 @@ us a "time travel" experience.
 
 ## Prerequisites
 - Some python knowledge.
-- Basic CSS (to be particular css selectors) knowledge.
+- Basic HTML and CSS (to be particular css selectors) knowledge.
 - Python 3 installed, preferable python 3.8 but any version from 3.6+ should work
 - A code editor.
 
@@ -23,3 +23,4 @@ Once you are done with the setup, feel free to dive into the tasks.
 - Pay attention to the function names mentioned in tasks, **do not change them** unless the tests would never pass
 - If you use different variables from those listed in the tasks, ensure you stick to the new names you use in later steps. 
 - Pay attention to strings(and the lack of strings) especially those that appear inside back ticks(``).
+- Dont change the keys of dictionaries mentioned in tasks, unless the tests would never pass. 
