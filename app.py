@@ -34,5 +34,7 @@ def format_events(events):
             formatted_events.append(d)
     return formatted_events
 
+
+
 if __name__=="__main__":
     print(get_data())

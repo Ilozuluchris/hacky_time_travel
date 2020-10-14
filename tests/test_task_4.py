@@ -77,5 +77,5 @@ def test_format_events(good_events_data):
     assert excepted_result == actual_result, "Something is wrong with the returned list. Check that: \n " \
                                              "i. The dictionaries you are appending to the list have only two keys\n" \
                                              "ii. You did not mistakenly change the variable order of the tuple gotten" \
-                                             " from the line event.text.split(" ", 1). year of the event is the " \
+                                             " from the line event.text.split(" ", 1); year of the event is the " \
                                              "first element of the tuple and details of the event is the second element"

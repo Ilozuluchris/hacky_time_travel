@@ -62,4 +62,37 @@ While we have successfully scraped for a list of  events, hurray!, we need to fo
     - Tip: You need to un-indent to the first indent level of the function ie  `formatted_events` 
     before returning the result, this ensures  all the events are in the list not just one
 
-# 5 Add visuals, so we can show our time machine
+# 5 Putting it all together + a hacky time machine
+Congrats on making it this far, hopefully with no bugs, we are done with the web scraping part
+but we need to yie it all together and view our hacky time machine, after all there is no time travel
+without a time machine. To show our time machine we would use flask, which is a web framewok for python.
+As this task relies heavily on flask and nt web scraping iwould rapidly glossover the code you only need to copy and paste it
+
+- Import the needed Flask libraies via `from flask import Flask, render_template
+`
+
+- Copy and paste this into `app.py`
+`````python
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello_world():
+    page = get_page_data()
+    events_in_history = format_events(get_events(page))
+    return render_template('index.html', events=events_in_history)
+````` 
+This block of code creates a flask application then defines what happens when we visit
+the index page of the app, which in this case is getting a list of our formatted events
+and rendering it on a html page
+
+
+- Next we write the code for starting the flask app
+```python
+if __name__ == "__main__":
+    app.run('0.0.0.0', 5000, True)
+```
+This block of code bascially says our flask app shuld start/listen on port 5000 of our local machine in debug mode.
+the use of `if __name__ == "__main__"` ensures the app only starts when the script is ran
+
+- Run `python app.py` to time travel, play around the page and enjoy!
