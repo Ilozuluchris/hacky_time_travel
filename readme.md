@@ -24,3 +24,17 @@ Once you are done with the setup, feel free to dive into the tasks.
 - If you use different variables from those listed in the tasks, ensure you stick to the new names you use in later steps. 
 - Pay attention to strings(and the lack of strings) especially those that appear inside back ticks(``).
 - Dont change the keys of dictionaries mentioned in tasks, unless the tests would never pass. 
+
+
+### Miscellaneous
+
+- Why pipenv?
+    1. Simpler commands to activate virtual environment, you don't need to remember the name of your virtual environment to activate it.
+    2. Better dependency management compared to virtualenv
+
+- Why Requests?
+    1. A more human readable API than urllib.
+
+- Ways to improve code
+    1. If you included an else statement in the get_events function in task 2
+You can actually remove this. Tip: In python, functions return None by default
