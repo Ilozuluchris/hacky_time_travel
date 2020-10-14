@@ -11,12 +11,12 @@ def get_data():
     try:
         res = requests.get(website_url)
     except RequestException:
-        return {'status': False}
-    return {'status': True, "content": res.text}
+        return {'success': False}
+    return {'success': True, "content": res.text}
 
 
 def get_events(site_data):
-    if site_data['status']:
+    if site_data['success']:
         site_html = site_data['content']
 
         soup = BeautifulSoup(site_html, "html.parser")

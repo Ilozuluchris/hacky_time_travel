@@ -1,5 +1,5 @@
 """
-Test cases for task 2.
+Test cases for task 1.
 """
 from unittest import mock
 
@@ -34,23 +34,24 @@ def exception_thrown_side_effect(*args, **kwargs):
 
 def test_requests_import():
     assert "requests" in dir(
-        app), "The requests module has not been imported, use 'import requests' without the quotes  to import it"
+        app), "The requests module has not been imported in app.py, " \
+              "use 'import requests' without the quotes to import it"
 
 
 def test_requests_exception_import():
     assert "RequestException" in dir(
-        app), "RequestException should be imported via 'from requests.exceptions import RequestException' " \
-              "without the quotes"
+        app), "RequestException has not been imported in app.py please import via " \
+              "'from requests.exceptions import RequestException' without the quotes"
 
 
 def test_get_data_exists():
-    assert "get_data" in dir(app), "You need to define the get_data function in app.py"
+    assert "get_data" in dir(app), "The get_data function has not been defined in app.py"
 
 
 @mock.patch('app.requests.get', side_effect=good_side_effect)
 def test_get_data_good_request(mocked_requests_get):
     """
-    Test that get_data() works right when  requests.get()
+    Test that the get_data function works right when  requests.get()
     doesn't throw an error and the right url is passed to requests.get().
     """
     assert "get_data" in dir(app), "The get_data function has not been defined in app.py"
@@ -61,31 +62,33 @@ def test_get_data_good_request(mocked_requests_get):
         type(returned_data))
 
     try:
-        status = returned_data['status']
+        success = returned_data['success']
     except KeyError:
-        pytest.fail("The returned dictionary from get_data does not have a status key")
+        pytest.fail("The returned dictionary from get_data does not have a success key")
     else:
-        assert isinstance(status, bool), "The status key from get_data's returned value does not map " \
-                                         "to a boolean (True or False)"
-        assert status is True, "The status key in get_data's returned dictionary does not map to True(a boolean)," \
-                               "remember if the RequestException is thrown, the status key should map to True"
+        assert isinstance(success, bool), "The success key from get_data's returned value does not map " \
+                                          "to a boolean (True or False)"
+        assert success is True, "The success key in get_data's returned dictionary does not map to True(a boolean), " \
+                                "remember if the RequestException is not thrown, the success key should map to True"
 
     try:
         content = returned_data['content']
     except KeyError:
-        pytest.fail("get_data's returned dictionary does not have a content key")
+        pytest.fail("The returned dictionary from get_data does not have a content key")
     else:
         assert isinstance(content,
                           str), "The content key from get_data's returned dictionary should map to a str not a {}, " \
-                                "tip ensure it maps to res.txt".format(type(content))
+                                "check that it maps to " \
+                                "res.txt(the txt attribute of the result gotten from calling requests.get())".format(type(content))
         assert "html" in content, "The content key from get_data's returned dictionary is not mapped to a valid html," \
-                                  "check that it is mapped to res.text ie: 'content': res.text"
+                                  "check that it is mapped to res.text (the txt attribute of the result gotten from " \
+                                  "calling requests.get()) ie: 'content': res.text"
 
 
 @mock.patch('app.requests.get', side_effect=exception_thrown_side_effect)
 def test_get_data_bad_request(mocked_requests_get):
     """
-    Test that get_data fails when requests.get throws an error
+    Test that get_data fails when requests.get throws an exception
     """
     assert "get_data" in dir(app), "The get_data function has not been defined in app.py"
 
@@ -95,19 +98,19 @@ def test_get_data_bad_request(mocked_requests_get):
         type(returned_data))
 
     try:
-        status = returned_data['status']
+        success = returned_data['success']
     except KeyError:
-        pytest.fail("get_data's returned dictionary does not have a content key")
+        pytest.fail("The returned dictionary from get_data does not have a success key")
     else:
-        assert isinstance(status, bool), "The status key from get_data's returned value does not map " \
+        assert isinstance(success, bool), "The success key from get_data's returned value does not map " \
                                          "to a boolean (True or False)"
-        assert status is False, "The status key from get_data's returned dictionary should be " \
-                                "mapped to False if RequestException is caught"
+        assert success is False, "The success key from get_data's returned dictionary should be " \
+                                 "mapped to False if RequestException is caught"
 
     try:
         returned_data['content']
     except KeyError:
         pass
     else:
-        pytest.fail("get_data's returned dictionary should not have a content key, "
-                    "since `RequestsException` was thrown.")
+        pytest.fail("The returned dictionary from get_data should not have a content key when "
+                    "'RequestException' is thrown")

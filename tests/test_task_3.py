@@ -19,13 +19,13 @@ def good_events_data():
 
 def test_format_events_exists():
     assert "format_events" in dir(app), \
-        "The format_events function has not been created in app.py, please create."
+        "The format_events function has not been created in app.py, please create it."
 
 
 def test_format_events_none_input():
     actual_result = app.format_events(None)
     expected_result = []
-    assert isinstance(actual_result, list), "The format events function does not return a list, " \
+    assert isinstance(actual_result, list), "The format_events function does not return a list, " \
                                             "ensure format_events returns a list irregardless of if its argument " \
                                             "is None or not"
     assert actual_result == expected_result, "The list returned when the argument to format_events is None " \
@@ -40,9 +40,9 @@ def test_format_events_empty_events():
                                             "ensure format_events returns a list irregardless of if its argument " \
                                             "is None or not"
 
-    assert actual_result == expected_result, "The list returned when the argument to format_events is an empty " \
-                                             "is not an empty list. Ensure you are not appending an item" \
-                                             " outside of the for loop"
+    assert actual_result == expected_result, "The list returned when the argument to format_events contains no events" \
+                                             "is not an empty list. Ensure you are not appending an item " \
+                                             "outside of the for loop"
 
 
 def test_format_events(good_events_data):
@@ -57,7 +57,7 @@ def test_format_events(good_events_data):
 
     first_event = actual_result[0]
     assert isinstance(first_event, dict), "Elements in the list returned by format_events " \
-                                          f" are {type(first_event)} instead of dictionaries"
+                                          "are {} instead of dictionaries".format(type(first_event))
 
     try:
         event_year = first_event['year']

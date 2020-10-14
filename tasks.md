@@ -12,9 +12,9 @@ But before we can get our events, we need to first download the html page of the
        - Tip: Pay attention to the url scheme(`https`) and the www part.
     2. Get the html data by passing the site_url to `requests.get()` and assigning the result to a variable ie `res = requests.get(site_url)`
     3. Catch the `RequestException`, this exception can thrown from the code in the previous step, using a try-catch statement.
-    4.  If `RequestException` is thrown return a dictionary whose only key('status') maps to `False` ie `{"status":False}`
+    4.  If `RequestException` is thrown return a dictionary whose only key('success') maps to `False` ie `{"success":False}`
             - Note: `False` is `boolean` not a `string`
-    5.   If `RequestException` does not occur, return a dictionary like so: `{"status": True, "content": res.text}`
+    5.   If `RequestException` does not occur, return a dictionary like so: `{"success": True, "content": res.text}`
             - Note: `True` is a `boolean` not a `string`
             - Tip: Remember to change `res` to whatever variable you used to store the html data gotten in ii
 
@@ -23,7 +23,7 @@ But before we can get our events, we need to first download the html page of the
   The BeautifulSoup library would allow us makes sense of  (parsing) the html data.
 - First we import the BeautifulSoup class from the bs4(version 4 of the BeautifulSoup library) into app.py using `from bs4 import BeautifulSoup`
 - Next, we define a function called `get_events`, this function would be receiving only one argument called `data`, which is the dictionary returned by the `get_data` function in the previous task.
-- Check the `status` key of the argument(`data`) passed  ie `data['status']` is equal to `True`, using an if statement.
+- Check the `success` key of the argument(`data`) passed  ie `data['success']` is equal to `True`, using an if statement.
   - Tip: `True` is a `boolean` not a  `string`
 - If the check fails, we do nothing and just return `None` since this case is not useful to us.
     - Tip: `None` is a  data type of its own in python.
