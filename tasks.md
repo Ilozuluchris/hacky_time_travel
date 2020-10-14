@@ -64,30 +64,30 @@ As this task focuses heavily on flask and not web scraping I would rapidly gloss
 
 - Import the needed Flask libraries using `from flask import Flask, render_template`
 
-- Next copy and paste this into `app.py`
-`````python
-flask_app = Flask(__name__)
+-   Next copy and paste this into `app.py`
+    `````python
+    flask_app = Flask(__name__)
+    
+    
+    @flask_app.route('/')
+    def hello_world():
+        page_data = get_page_data()
+        events_in_history = format_events(get_events(page_data))
+        return render_template('index.html', events=events_in_history)
+    
+    ````` 
+    This block of code creates a flask application, then defines what happens when we visit
+    the index page(`\`) of the app, which in this case is getting a list of our formatted events
+    and rendering it on a html page.
 
-
-@flask_app.route('/')
-def hello_world():
-    page_data = get_page_data()
-    events_in_history = format_events(get_events(page_data))
-    return render_template('index.html', events=events_in_history)
-
-````` 
-This block of code creates a flask application, then defines what happens when we visit
-the index page(`\`) of the app, which in this case is getting a list of our formatted events
-and rendering it on a html page.
-
-- Next we write the code for starting the flask app, this block should be the last thing in the `app.py` file.
-```python
-if __name__ == "__main__":
-    flask_app.run('0.0.0.0', 5000, True)
-
-```
-This block of code basically states that our flask app should start/listen on port 5000 of our local machine in debug mode.
-The use of `if __name__ == "__main__"` ensures the app only starts when the script is ran
+-   Next we write the code for starting the flask app, this block should be the last thing in the `app.py` file.
+    ```python
+    if __name__ == "__main__":
+        flask_app.run('0.0.0.0', 5000, True)
+    
+    ```
+    This block of code basically states that our flask app should start/listen on port 5000 of our local machine in debug mode.
+    The use of `if __name__ == "__main__"` ensures the app only starts when the script is ran
     - Tip: If port 5000 of your machine is not open, feel free to change it as needed.
 
-- Run `python app.py` to time travel, play around the page and enjoy!
+-   Run `python app.py` to time travel, play around the page and enjoy!
