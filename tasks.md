@@ -69,8 +69,8 @@ As this task focuses heavily on Flask and not web scraping I would rapidly gloss
   
   
    @flask_app.route('/')
-   def hello_world():
-       page_data = get_page_data()
+   def index():
+       page_data = get_data()
        events_in_history = format_events(get_events(page_data))
        return render_template('index.html', events=events_in_history)
   

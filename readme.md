@@ -13,7 +13,7 @@ us a "time travel" experience.
 ## Setup
 - Navigate to the root folder of the project.
 - Install requirements in requirements.txt preferably in a virtual environment, personally I recommend [Pipenv](https://pipenv.pypa.io/en/latest/)
-  - Using Pipenv: `pipenv install -r requirements.txt --three`
+  - Using Pipenv: `pipenv install -r requirements.txt --three` then activate the virtual environment using `pipenv shell`.
 -  Run `ptw` or `pytest-watch` on your terminal to verify the setup, all tests should fail, which is a good thing. Keep this running, so we can watch the tests pass as we progress.
 
 ## What Next?

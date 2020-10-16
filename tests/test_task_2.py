@@ -26,10 +26,13 @@ def test_beautifulsoup_import():
 
 
 def test_get_events_exists():
-    assert "get_events" in dir(app), "The get_events function has not been defined in app.py, please define."
+    assert "get_events" in dir(app), "The get_events function has not been created in app.py, please create it."
 
 
 def test_get_events_using_good_data(good_data_from_site):
+    """
+    Test that the get_event function works right when given correct data.
+    """
     assert "get_events" in dir(app), "The get_events function has not been created in app.py, please create it and " \
                                      "check that the function name is correct"
 
@@ -43,8 +46,11 @@ def test_get_events_using_good_data(good_data_from_site):
 
 
 def test_get_events_using_bad_data(bad_data_from_site):
+    """
+    Test that the get_event function works correctly when given bad data(data without an HTML page).
+    """
     assert "get_events" in dir(app), "The get_events function has not been created in app.py, please create it and " \
-                                     "check the function name is correct"
+                                     "check that the function name is correct"
 
     result = app.get_events(bad_data_from_site)
     assert result is None, "The get_events function is not returning None " \
